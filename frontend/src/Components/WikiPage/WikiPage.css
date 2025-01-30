@@ -2,6 +2,8 @@
     padding: 10px 10px;
     overflow: none;
     position: fixed;
-    overflow-y: auto;
+    overflow: hidden;
     border: 1px solid black;
+    max-width: 100%;
+    height: auto;
 }   

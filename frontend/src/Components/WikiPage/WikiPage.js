@@ -41,7 +41,7 @@ const WikiPage = () => {
   };
   return (
     <div className='wikipage-container'>
-      <h1>Wikipedia Page</h1>
+      {/* <h1>Wikipedia Page</h1> */}
       <input
         type="text"
         placeholder="Enter City Name"
