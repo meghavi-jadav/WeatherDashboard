@@ -1,0 +1,7 @@
+#wiki{
+    padding: 10px 10px;
+    overflow: none;
+    position: fixed;
+    overflow-y: auto;
+    border: 1px solid black;
+}   
