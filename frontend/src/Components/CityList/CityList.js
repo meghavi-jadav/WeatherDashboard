@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import { cities } from "./city-list";
  
 const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
 const cities = ["London", "New York", "Tokyo", "Paris", "Berlin", "Sydney", "Toronto", "Mumbai", "Dubai", "Moscow", "Beijing", "Madrid", "Rome", "Seoul", "Bangkok", "Singapore", "Los Angeles", "Chicago", "Istanbul", "Cairo"];
@@ -85,6 +87,94 @@ const CityList = () => {
 };
  
 export default CityList;
+
+// import React, { useState, useEffect } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { cities } from "./city-list";
+
+// const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
+// const citiesPerPage = 10;
+
+// const CityList = () => {
+//   const [weatherData, setWeatherData] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   useEffect(() => {
+//     const fetchWeatherData = async () => {
+//       try {
+//         const startIndex = (currentPage - 1) * citiesPerPage;
+//         const endIndex = startIndex + citiesPerPage;
+//         const currentCities = cities.slice(startIndex, endIndex);
+
+//         const requests = currentCities.map(city =>
+//           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+//             .then(response => response.json())
+//         );
+
+//         const results = await Promise.all(requests);
+//         setWeatherData(results);
+//       } catch (error) {
+//         console.error("Error fetching weather data:", error);
+//       }
+//     };
+
+//     fetchWeatherData();
+//   }, [currentPage]);
+
+//   const filteredCities = weatherData.filter(city =>
+//     searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+//   return (
+//     <div className="container mt-4">
+//       <input
+//         type="text"
+//         className="form-control mb-3"
+//         placeholder="Search city..."
+//         value={searchTerm}
+//         onChange={(e) => setSearchTerm(e.target.value)}
+//       />
+
+//       <table className="table table-bordered">
+//         <thead>
+//           <tr>
+//             <th>City</th>
+//             <th>Min Temp (&deg;C)</th>
+//             <th>Max Temp (&deg;C)</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredCities.map((city, index) => (
+//             <tr key={index}>
+//               <td>{city.name}</td>
+//               <td>{city.main?.temp_min || "N/A"}</td>
+//               <td>{city.main?.temp_max || "N/A"}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+
+//       <nav>
+//         <ul className="pagination justify-content-center">
+//           {Array.from({ length: Math.ceil(cities.length / citiesPerPage) }, (_, i) => (
+//             <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
+//               <button onClick={() => paginate(i + 1)} className="page-link">
+//                 {i + 1}
+//               </button>
+//             </li>
+//           ))}
+//         </ul>
+//       </nav>
+//     </div>
+//   );
+// };
+
+// export default CityList;
+
+
 
 // import React, { useState, useEffect } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -175,6 +265,93 @@ export default CityList;
 //       <nav>
 //         <ul className="pagination justify-content-center">
 //           {Array.from({ length: Math.ceil(filteredCities.length / citiesPerPage) }, (_, i) => (
+//             <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
+//               <button onClick={() => paginate(i + 1)} className="page-link">
+//                 {i + 1}
+//               </button>
+//             </li>
+//           ))}
+//         </ul>
+//       </nav>
+//     </div>
+//   );
+// };
+
+// export default CityList;
+
+
+// import React, { useState, useEffect } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { cities } from "./city-list";
+
+// const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
+// const citiesPerPage = 10;
+
+// const CityList = () => {
+//   const [weatherData, setWeatherData] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   useEffect(() => {
+//     const fetchWeatherData = async () => {
+//       try {
+//         const startIndex = (currentPage - 1) * citiesPerPage;
+//         const endIndex = startIndex + citiesPerPage;
+//         const currentCities = cities.slice(startIndex, endIndex);
+
+//         const requests = currentCities.map(city =>
+//           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+//             .then(response => response.json())
+//         );
+
+//         const results = await Promise.all(requests);
+//         setWeatherData(results);
+//       } catch (error) {
+//         console.error("Error fetching weather data:", error);
+//       }
+//     };
+
+//     fetchWeatherData();
+//   }, [currentPage]);
+
+//   const filteredCities = weatherData.filter(city =>
+//     searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+//   return (
+//     <div className="container mt-4">
+//       <input
+//         type="text"
+//         className="form-control mb-3"
+//         placeholder="Search city..."
+//         value={searchTerm}
+//         onChange={(e) => setSearchTerm(e.target.value)}
+//       />
+
+//       <table className="table table-bordered">
+//         <thead>
+//           <tr>
+//             <th>City</th>
+//             <th>Min Temp (&deg;C)</th>
+//             <th>Max Temp (&deg;C)</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredCities.map((city, index) => (
+//             <tr key={index}>
+//               <td>{city.name}</td>
+//               <td>{city.main?.temp_min || "N/A"}</td>
+//               <td>{city.main?.temp_max || "N/A"}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+
+//       <nav>
+//         <ul className="pagination justify-content-center">
+//           {Array.from({ length: Math.ceil(cities.length / citiesPerPage) }, (_, i) => (
 //             <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
 //               <button onClick={() => paginate(i + 1)} className="page-link">
 //                 {i + 1}

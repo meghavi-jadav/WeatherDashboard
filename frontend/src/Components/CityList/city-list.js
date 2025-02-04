@@ -1,5 +1,5 @@
 
-    
+export const cities =
          [  "Tokyo",
             "Jakarta",
             "Delhi",

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './WikiPage.css'
 
 const WikiPage = () => {
 
@@ -48,7 +49,7 @@ const WikiPage = () => {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
-      <button onClick={fetchWikipedia}>Get Wikipedia Page</button>
+      <button onClick={fetchWikipedia} >Get Wikipedia Page</button>
       {WikiPage && (
         <div className='wikipage'>
           {/* <h2>Wikipedia Page for {city}</h2> */}

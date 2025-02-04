@@ -54,7 +54,7 @@
 }
  
 .wikipage-box {
-  background-color: #2a5d7d; /* Background color for the box */
+  /* background-color: #2a5d7d;  */
   padding: 10px;
   border-radius: 50px;
   flex: 60%; /* Takes 60% of the right half */
