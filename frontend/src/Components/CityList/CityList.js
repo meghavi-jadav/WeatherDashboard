@@ -1,47 +1,84 @@
 // import React, { useState, useEffect } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
-// import { cities } from "./city-list";
- 
-// const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
 
- 
+
+// const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
+// const CITIES_API_URL = "https://countriesnow.space/api/v0.1/countries/population/cities"; 
+
 // const CityList = () => {
 //   const [weatherData, setWeatherData] = useState([]);
-//   const [currentPage, setCurrentPage] = useState(1);
 //   const [searchTerm, setSearchTerm] = useState("");
-//   const citiesPerPage = 10;
- 
+//   const [citiesPerPage, setCitiesPerPage] = useState(10);
+//   const [loadedCities, setLoadedCities] = useState(10); 
+//   const [cities, setCities] = useState([]); // State to hold city names
+//   const [displayCount, setDisplayCount] = useState(10);
+  
+
+
 //   useEffect(() => {
+//     const fetchCities = async () => {
+//       try {
+//         const response = await fetch(CITIES_API_URL);
+//         const data = await response.json();
+    
+//         // Check if the response contains the expected data structure
+//         if (data && !data.error && Array.isArray(data.data)) {
+//           // Filter cities to include only those in India
+//           const indianCities = data.data
+//             .filter(city => city.country === "India") // Access the country property
+//             .map(city => city.city); // Access the city name property
+    
+//           setCities(indianCities); // Store the filtered city names
+//         } else {
+//           console.error("Unexpected data structure:", data);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching city names:", error);
+//       }
+//     };
+
+//     fetchCities();
+//   }, []);
+
+ 
+
+//   useEffect(() => {
+
 //     const fetchWeatherData = async () => {
 //       try {
-//         const requests = cities.map(city =>
-//         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+//         const requests = cities.slice(0, loadedCities).map(city =>
+//           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
 //             .then(response => response.json())
 //         );
-        
+
 //         const results = await Promise.all(requests);
 //         setWeatherData(results);
+        
+       
 //       } catch (error) {
 //         console.error("Error fetching weather data:", error);
 //       }
 //     };
 //     fetchWeatherData();
-//   }, []);
- 
+   
+    
+//   }, [loadedCities]);
+//   // Fetch data whenever loadedCities changes
+
+//   console.log(weatherData);
 //   const filteredCities = weatherData.filter(city =>
-//   searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase())
+//     searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase())
 //   );
+
+//   const currentCities = filteredCities.slice(0, loadedCities); // Show only loaded cities
+
+//   const loadMoreCities = () => {
+//     setLoadedCities(prev => Math.min(prev + citiesPerPage, cities.length)); // Load more cities
+//   };
  
-//   const indexOfLastCity = currentPage * citiesPerPage;
-//   const indexOfFirstCity = indexOfLastCity - citiesPerPage;
-//   const currentCities = filteredCities.slice(indexOfFirstCity, indexOfLastCity);
- 
-//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
  
 //   return (
 //     <div className="container mt-4">
-//       {/* <h2 className="mb-4 text-center">Weather Forecast Dashboard</h2> */}
-      
 //       <input
 //         type="text"
 //         className="form-control mb-3"
@@ -49,7 +86,7 @@
 //         value={searchTerm}
 //         onChange={(e) => setSearchTerm(e.target.value)}
 //       />
-      
+
 //       <table className="table table-bordered">
 //         <thead>
 //           <tr>
@@ -68,64 +105,85 @@
 //           ))}
 //         </tbody>
 //       </table>
-      
-//       {/* Pagination */}
-//       <nav>
-//         <ul className="pagination justify-content-center">
-//           {Array.from({ length: Math.ceil(filteredCities.length / citiesPerPage) }, (_, i) => (
-//             <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
-//               <button onClick={() => paginate(i + 1)} className="page-link">
-//                 {i + 1}
-//               </button>
-//             </li>
-//           ))}
-//         </ul>
-//       </nav>
+
+//       {/* Load More Button */}
+//       {displayCount < cities.length && (
+//         <div className="text-center">
+//           <button className="btn btn-primary" onClick={loadMoreCities}>
+//             Load More
+//           </button>
+//         </div>
+//       )}
 //     </div>
 //   );
 // };
- 
+
 // export default CityList;
+
+
 
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { cities } from "./city-list";
+import './CityList.css'
 
 const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
+const CITIES_API_URL = "https://countriesnow.space/api/v0.1/countries/population/cities"; 
 
 const CityList = () => {
   const [weatherData, setWeatherData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [citiesPerPage, setCitiesPerPage] = useState(10);
-  const [loadedCities, setLoadedCities] = useState(10); // Number of cities loaded
+  const [loadedCities, setLoadedCities] = useState(10); 
+  const [cities, setCities] = useState([]); // State to hold city names
 
-  
-  console.log(cities);
   useEffect(() => {
-
-    const fetchWeatherData = async () => {
+    const fetchCities = async () => {
       try {
-        const requests = cities.slice(0, loadedCities).map(city =>
-          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
-            .then(response => response.json())
-        );
-
-        const results = await Promise.all(requests);
-        setWeatherData(results);
-        
-       
+        const response = await fetch(CITIES_API_URL);
+        const data = await response.json();
+    
+        // Check if the response contains the expected data structure
+        if (data && !data.error && Array.isArray(data.data)) {
+          // Filter cities to include only those in India
+          const indianCities = data.data
+            .filter(city => city.country === "India") // Access the country property
+            .map(city => city.city); // Access the city name property
+    
+          setCities(indianCities); // Store the filtered city names
+        } else {
+          console.error("Unexpected data structure:", data);
+        }
       } catch (error) {
-        console.error("Error fetching weather data:", error);
+        console.error("Error fetching city names:", error);
       }
     };
-    fetchWeatherData();
-   
-    
-  }, [loadedCities]);
-  // Fetch data whenever loadedCities changes
 
-  console.log(weatherData);
+    fetchCities();
+  }, []);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      if (cities.length > 0) {
+        try {
+          const requests = cities.slice(0, loadedCities).map(city =>
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`)
+              .then(response => response.json())
+          );
+
+          const results = await Promise.all(requests);
+          setWeatherData(results);
+        } catch (error) {
+          console.error("Error fetching weather data:", error);
+        }
+      }
+    };
+
+    fetchWeatherData();
+  }, [loadedCities, cities]); // Fetch weather data whenever loadedCities or cities change
+
+  console.log(weatherData)
+ 
+
   const filteredCities = weatherData.filter(city =>
     searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -135,40 +193,40 @@ const CityList = () => {
   const loadMoreCities = () => {
     setLoadedCities(prev => Math.min(prev + citiesPerPage, cities.length)); // Load more cities
   };
-  // console.log(loadedCities, filteredCities.length);
-  // console.log(Min, loadedCities);
+
+  console.log(loadedCities, filteredCities.length)
   return (
-    <div className="container mt-4">
+    <div className="citylist-container">
       <input
         type="text"
-        className="form-control mb-3"
+        className="search-bar"
         placeholder="Search city..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>City</th>
-            <th>Min Temp (&deg;C)</th>
-            <th>Max Temp (&deg;C)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentCities.map((city, index) => (
-            <tr key={index}>
-              <td>{city.name}</td>
-              <td>{city.main?.temp_min || "N/A"}</td>
-              <td>{city.main?.temp_max || "N/A"}</td>
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Min Temp (&deg;C)</th>
+              <th>Max Temp (&deg;C)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
+          </thead>
+          <tbody>
+            {currentCities.map((city, index) => (
+              <tr key={index}>
+                <td>{city.name}</td>
+                <td>{city.main?.temp_min || "N/A"}</td>
+                <td>{city.main?.temp_max || "N/A"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {/* Load More Button */}
-      {loadedCities < cities.length && (
-        <div className="text-center">
+      {loadedCities <= filteredCities.length && (
+        <div className="load-more-container">
           <button className="btn btn-primary" onClick={loadMoreCities}>
             Load More
           </button>
@@ -179,5 +237,4 @@ const CityList = () => {
 };
 
 export default CityList;
-
 
