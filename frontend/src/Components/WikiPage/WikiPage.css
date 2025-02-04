@@ -1,9 +1,65 @@
-#wiki{
-    padding: 10px 10px;
-    overflow: none;
-    position: fixed;
-    overflow: hidden;
-    border: 1px solid black;
-    max-width: 100%;
-    height: auto;
-}   
+.wikipage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #2a5d7d;  
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 50px;
+  display: inline;
+}
+ 
+.wikipage-container input {
+  padding: 10px;
+  width: 50%;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+ 
+.wikipage-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ 
+}
+ 
+.wikipage-container button:hover {
+  background-color: #45a049;
+}
+ 
+ 
+.wikipage {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  border-radius: 20px;
+ 
+}
+/* .wikipage-container .wikipage {
+  width: 100%;
+  height: 100%;  
+  margin-top: 20px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+} */
+ 
+/* .wikipage-container iframe {
+  width: 100%;
+  height: 100vh;
+  border-radius: 25px;
+  border: none;
+  object-fit: cover;
+ 
+} */
