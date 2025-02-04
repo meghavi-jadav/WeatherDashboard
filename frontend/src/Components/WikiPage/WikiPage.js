@@ -50,13 +50,14 @@ const WikiPage = () => {
       />
       <button onClick={fetchWikipedia}>Get Wikipedia Page</button>
       {WikiPage && (
-        <div>
+        <div className='wikipage'>
           {/* <h2>Wikipedia Page for {city}</h2> */}
           <iframe 
+          className='iframe'
           id="wiki"
             src = {WikiPage}
             width="100%"
-            height="390px"
+            height="320px"
             title='Wikipedia Page'
           ></iframe>
         </div>
@@ -66,3 +67,52 @@ const WikiPage = () => {
 };
 
 export default WikiPage;
+
+
+
+// import React, { useState, useEffect } from 'react';
+
+// const WikiPage = ({ selectedCity }) => {
+//   const [WikiPage, setWikiPage] = useState(null);
+
+//   useEffect(() => {
+//     const fetchWikipedia = async () => {
+//       if (!selectedCity) return;
+
+//       const wikiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${selectedCity}`;
+//       try {
+//         const response = await fetch(wikiUrl);
+//         const data = await response.json();
+
+//         if (data.content_urls) {
+//           setWikiPage(data.content_urls.desktop.page);
+//         } else {
+//           setWikiPage('');
+//         }
+//       } catch (error) {
+//         console.error('Error Fetching the wikipedia page');
+//         setWikiPage('');
+//       }
+//     };
+
+//     fetchWikipedia();
+//   }, [selectedCity]);
+
+//   return (
+//     <div className='wikipage-container'>
+//       {WikiPage && (
+//         <div>
+//           <iframe
+//             id='wiki'
+//             src={WikiPage}
+//             width='100%'
+//             height='390px'
+//             title='Wikipedia Page'
+//           ></iframe>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default WikiPage;

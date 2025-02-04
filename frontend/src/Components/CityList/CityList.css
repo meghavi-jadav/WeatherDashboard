@@ -1,0 +1,37 @@
+.citylist-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+   
+  .city-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+   
+  .city-table th,
+  .city-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+   
+  .city-table th {
+    background-color: #2a5d7d;
+    color: white;
+    font-size: 1.1rem;
+  }
+   
+  .city-table td {
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+  }
+   
+  .city-table tr:hover {
+    background-color: #f1f1f1
+}
