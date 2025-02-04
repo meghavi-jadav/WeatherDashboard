@@ -1,5 +1,27 @@
-
+// export const cities = [
+//    "London",
+//    "New York",
+//    "Tokyo",
+//    "Paris",
+//    "Berlin",
+//    "Sydney",
+//    "Toronto",
+//    "Mumbai",
+//    "Dubai",
+//    "Moscow",
+//    "Beijing",
+//    "Madrid",
+//    "Rome",
+//    "Seoul",
+//    "Bangkok",
+//    "Singapore",
+//    "Los Angeles",
+//    "Chicago",
+//    "Istanbul",
+//    "Cairo"
+//  ];
     
+        export const cities =
          [  "Tokyo",
             "Jakarta",
             "Delhi",
@@ -47868,5 +47890,5 @@
             "Muan",
             "Hongseong",
             "Charlotte Amalie"
-        ]
+        ];
     
