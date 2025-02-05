@@ -1,13 +1,13 @@
-/* .citylist-container {
+/* /* .citylist-container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
+   
   } */
-
+ 
   .citylist-container{
     width: 100%;
     margin: auto;
@@ -15,7 +15,7 @@
     flex-direction: column;
     /* align-items: center; */
   }
-
+ 
   .search-bar{
     width: 100%;
     padding: 5px;
@@ -24,7 +24,7 @@
     border-radius: 50px;
     font-size: 16px;
   }
-
+ 
   .table-container{
     width: 100%;
     height: 65vh;
@@ -34,22 +34,22 @@
     border: 1px solid #ccc;
   }
    
-
+ 
   .table {
     width: 100%;
     border-collapse: collapse;
   }
-
+ 
   .table thead{
     background-color: #007bff;
     color: white;
     top: 0;
   }
-
+ 
   .load-more-container{
     margin-top: 10px;
   }
-
+ 
   .load-more-container button{
     padding: 10px 15px;
     font-size: 16px;
@@ -60,37 +60,12 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-
+ 
   .load-more-container button:hover {
     background-color: #0056b3;
   }
 
-  /* .city-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    overflow: scroll;
+ .table-container table tbody tr button{
+    background: transparent;
+    border: none;
   }
-   
-  .city-table th,
-  .city-table td {
-    padding: 10px 15px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-   
-  .city-table th {
-    background-color: #2a5d7d;
-    color: white;
-    font-size: 1.1rem;
-  }
-   
-  .city-table td {
-    background-color: #fff;
-    font-size: 1rem;
-    color: #333;
-  }
-   
-  .city-table tr:hover {
-    background-color: #f1f1f1
-} */
