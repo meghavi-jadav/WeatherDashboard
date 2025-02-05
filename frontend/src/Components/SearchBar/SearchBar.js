@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-export default function SearchBar (){
+export default function SearchBar() {
   return (
     <div>SearchBar</div>
   )
