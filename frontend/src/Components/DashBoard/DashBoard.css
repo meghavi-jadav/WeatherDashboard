@@ -11,7 +11,7 @@
   /* flex-direction: row; */
   height: 100vh; 
   /* background: linear-gradient(135deg, #1c1f26, #2b2f3a); */
-  background-color: black;
+  background-color: #0F0F0F;
   padding: 20px;
   gap: 10px;
   box-sizing: border-box;
@@ -22,7 +22,8 @@
 
 .left-half {
   flex: 1.5;
-  background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+  /* background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%); */
+  background-color: #1E1E1E;
   border-radius: 5px;
   width: 900%;
   display: flex;
@@ -78,8 +79,8 @@
 } */
 
 .slider-box {
-    background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
-
+    /* background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%); */
+    background-color: #1E1E1E;
   /* Background color for the box */
   padding: 10px 10px;
   border-radius: 5px;
@@ -97,7 +98,8 @@
   /* background: linear-gradient(145deg, #252b36, #1a1f27); */
   /* background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%); */
   /* background-color: #252b36; */
-  /* opacity: 0.7; */
+  
+  
   border-radius: 5px;
   flex: 0.6; 
   /* display: flex; */

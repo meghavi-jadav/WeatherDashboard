@@ -148,7 +148,7 @@ return (
       onChange={(e) => setSearchTerm(e.target.value)}
     />
       <div className="table-container">
-        <table className="table">
+        <table >
           <thead>
             <tr>
               <th>City</th>
@@ -158,7 +158,7 @@ return (
           </thead>
           <tbody>
               {filteredCities.map((city, index) => (
-                <tr key={index}>
+                <tr key={index} >
                   <td><button onClick={() => setSelectedCity(city.name)}>{city.name}</button></td>
                   <td>{city.main?.temp_min || "N/A"}</td>
                   <td>{city.main?.temp_max || "N/A"}</td>
@@ -170,7 +170,7 @@ return (
 
     {loadedCities <= filteredCities.length && (
       <div className="load-more-container">
-          <button className="btn btn-primary" onClick={loadMoreCities}>
+          <button className="btn" onClick={loadMoreCities}>
               Load More
           </button>
       </div>
