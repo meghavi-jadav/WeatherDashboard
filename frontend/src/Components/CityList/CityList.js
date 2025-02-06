@@ -44,64 +44,30 @@ useEffect(() => {
 }, []);
 
 
-
-  // useEffect(() => {
-//   const fetchWeatherData = async () => {
-//       if (cities.length > 0) {
-//           try {
-//               const results = []; // Array to hold valid results
-//               let index = 0; // Start from the first city
-
-//               // Continue fetching until we have enough valid results or run out of cities
-//               while (results.length < loadedCities && index < cities.length) {
-//                   const city = cities[index];
-//                   const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`);
-
-//                   if (response.ok) {
-//                       const data = await response.json();
-//                       results.push(data); // Add valid data to results
-//                   } else {
-//                       console.warn(`City not found: ${city}`); // Log the warning for the missing city
-//                   }
-//                   index++; // Move to the next city
-//               }
-
-//               setWeatherData(results);
-//                // Update state with valid weather data
-//           } catch (error) {
-//               console.error("Error fetching weather data:", error);
-//           }
-//       }
-//       console.log("loadedCities",loadedCities);
-      
-//   };
-
-//   console.log("hi",weatherData);
-
-//   fetchWeatherData();
-// }, [loadedCities, cities]); // Fetch weather data whenever loadedCities or cities change
-
-//---------------------------------------------//
 useEffect(() => {
     const fetchWeatherData = async () => {
         if (cities.length > 0) {
             try {
-              const results = [...weatherData]; // Keep previously fetched data
-              let index = results.length; // Start fetching from where we left off
+              const results = [...weatherData]; 
+              // Keep previously fetched data
+              let index = results.length; 
+              // Start fetching from where we left off
               while (results.length < loadedCities && index < cities.length) {
                     const city = cities[index];
                     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`);
  
                     if (response.ok) {
                       const data = await response.json();
-                      results.push(data); // Append new data
+                      results.push(data); 
+                      // Append new data
                    } else {
                        console.warn(`City not found: ${city}`);
                   }
                     index++;
               }
  
-              setWeatherData(results); // Update state with previous and new data
+              setWeatherData(results); 
+              // Update state with previous and new data
             } catch (error) {
                  console.error("Error fetching weather data:", error);
             }
@@ -120,23 +86,10 @@ const filteredCities = weatherData.filter(city =>
 );
 
 
-
-
-
-
-  
-
 const loadMoreCities = () => {
-  setLoadedCities(prev => Math.min(prev + citiesPerPage, cities.length)); // Load more cities
+  setLoadedCities(prev => Math.min(prev + citiesPerPage, cities.length)); 
+  // Load more cities
 };
-
-// const reloadCities = () => {
-//   setLoadedCities(10); // Load more cities
-// };
-//   const loadMoreCities = () => {
-//     setLoadedCities(prev => Math.min(prev + citiesPerPage, filteredCities.length));
-// };
-
 
 return (
   <div className="citylist-container">
@@ -160,7 +113,7 @@ return (
               {filteredCities.map((city, index) => (
                 <tr key={index} >
                   <td><button onClick={() => setSelectedCity(city.name)}>{city.name}</button></td>
-                  <td>{city.main?.temp_min || "N/A"}</td>
+                  <td>{city.main?.temp_min || "N/A"}</td> 
                   <td>{city.main?.temp_max || "N/A"}</td>
                 </tr>
               ))}
@@ -177,13 +130,6 @@ return (
     
     )}
 
-    {/* {loadedCities > filteredCities.length && (
-        <div className="load-more-container">
-            <button className="btn btn-primary" onClick={reloadCities}>
-                Reload
-            </button>
-        </div>
-      )} */}
   </div>
 );
 };

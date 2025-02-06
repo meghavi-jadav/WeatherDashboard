@@ -12,7 +12,6 @@ const cities = [
   { name: "Mumbai", img: img1 },
   { name: "Pune", img: img2 },
   { name: "Delhi", img: img3 },
-  // Add more cities as needed
 ];
 
 const Slider = () => {
@@ -20,7 +19,7 @@ const Slider = () => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; // Replace with your OpenWeather API key
+      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; 
       const fetchedData = {};
 
       for (const city of cities) {
@@ -57,15 +56,14 @@ const Slider = () => {
     <Carousel
       data-bs-theme="dark"
       controls={false}
-      interval={2000}
+      interval={1950}
       pause="hover"
     >
       {cities.map((city, index) => {
-        // Determine the weather condition for the current city
-        const weatherCondition = cityDetails[city.name]?.details || "clear"; // Default to "clear"
-
-        // Get the corresponding image from the mapping object
-        const imgSrc = weatherImageMap[weatherCondition] || img1; // Default to clear if not found
+        const weatherCondition = cityDetails[city.name]?.details || "clear"; 
+       
+        const imgSrc = weatherImageMap[weatherCondition] || img1; 
+        
 
         return (
           <Carousel.Item key={index} className="carousel">
@@ -86,9 +84,9 @@ const Slider = () => {
               </div>
 
               <div className="last">
-                <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
-                <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-                <p>Pressure: {cityDetails[city.name]?.pressure} mb</p>
+                <p>Wind<br></br> {cityDetails[city.name]?.wind?.speed} m/s</p>
+                <p>Humidity<br></br> {cityDetails[city.name]?.humidity}%</p>
+                <p>Pressure<br></br> {cityDetails[city.name]?.pressure} mb</p>
               </div>
             </div>
           </Carousel.Item>
@@ -101,36 +99,3 @@ const Slider = () => {
 };
 
 export default Slider;
-
-{
-  /* {cities.map((city,index) => (
-        <div className='city'>
-          <h3>{city.name}</h3>
-          <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
-          <p>Wind Speed: {cityDetails[city.name]?.wind?.speed} m/s</p>
-          <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-        </div>
-        
-      ))} */
-}
-
-{
-  /* <img className="d-block w-100" src={city.img} alt={`${city.name} slide`}/> */
-}
-{
-  /* <div className="overlay">
-                <div className="city-info">
-                  <h2>{city.name}</h2>
-                  <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
-                  <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
-                  <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-                  <p>Pressure: {cityDetails[city.name]?.pressure}mb</p>
-                </div>
-              </div> */
-}
-{
-  /* <div className="container"> */
-}
-{
-  /* </div> */
-}
