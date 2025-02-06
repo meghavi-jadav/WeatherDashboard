@@ -62,10 +62,12 @@ const Slider = () => {
     >
       {cities.map((city, index) => {
         // Determine the weather condition for the current city
-        const weatherCondition = cityDetails[city.name]?.details || "clear"; // Default to "clear"
+        const weatherCondition = cityDetails[city.name]?.details || "clear"; 
+        // Default to "clear"
 
         // Get the corresponding image from the mapping object
-        const imgSrc = weatherImageMap[weatherCondition] || img1; // Default to clear if not found
+        const imgSrc = weatherImageMap[weatherCondition] || img1; 
+        // Default to clear if not found
 
         return (
           <Carousel.Item key={index} className="carousel">
@@ -101,36 +103,3 @@ const Slider = () => {
 };
 
 export default Slider;
-
-{
-  /* {cities.map((city,index) => (
-        <div className='city'>
-          <h3>{city.name}</h3>
-          <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
-          <p>Wind Speed: {cityDetails[city.name]?.wind?.speed} m/s</p>
-          <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-        </div>
-        
-      ))} */
-}
-
-{
-  /* <img className="d-block w-100" src={city.img} alt={`${city.name} slide`}/> */
-}
-{
-  /* <div className="overlay">
-                <div className="city-info">
-                  <h2>{city.name}</h2>
-                  <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
-                  <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
-                  <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-                  <p>Pressure: {cityDetails[city.name]?.pressure}mb</p>
-                </div>
-              </div> */
-}
-{
-  /* <div className="container"> */
-}
-{
-  /* </div> */
-}
