@@ -2,36 +2,143 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  
+}
+ 
+.main-container {
+  display: flex;
+  /* flex-direction: row; */
+  height: 100vh; 
+  /* background: linear-gradient(135deg, #1c1f26, #2b2f3a); */
+  background-color: black;
+  padding: 20px;
+  gap: 10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  /* overflow: hidden; */
+  /* width: 100%; */
+}
+
+.left-half {
+  flex: 1.5;
+  background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+  border-radius: 5px;
+  width: 900%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  /* overflow-y: auto; */
+}
+ 
+.citylist-box {
+  
+  /* background-color: rgba(29, 35, 45, 0.9); */
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%; 
+  height: 100%;
+  /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6); */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* scrollbar-color: #3c4a5a #1e222d; */
+}
+ 
+.citylist-box::-webkit-scrollbar{
+  width: 8px;
+}
+
+.right-half {
+  flex: 1.5;
+  /* width: 50%; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  /* padding: 10px;
+  height: 100%; */
+}
+ 
+/* .slider-box {
+  flex: 0.4;
+  background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+} */
+
+.slider-box {
+    background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+
+  /* Background color for the box */
+  padding: 10px 10px;
+  border-radius: 5px;
+  justify-content: center;
+  
+  /* align-items: center; */
+  /* overflow: hidden; */
+  width: 65%;
+  height: 45%;
+  margin-left: 100px;
+  /* margin-top: 20px; */
+}
+
+.wikipage-box {
+  /* background: linear-gradient(145deg, #252b36, #1a1f27); */
+  /* background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%); */
+  /* background-color: #252b36; */
+  /* opacity: 0.7; */
+  border-radius: 5px;
+  flex: 0.6; 
+  /* display: flex; */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+  scrollbar-color: #3c4a5a #1e222d;
+  width: 100%;
+}
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
  
 .main-container {
   display: flex;
   width: 100%;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
 }
  
-/* Left Half - CityList Box */
 .left-half {
   width: 50%;
   display: flex;
   justify-content: center;
-  align-items: center; /* Center content vertically */
+  align-items: center; 
   padding: 10px;
 }
  
 .citylist-box {
-  background-color: #2a5d7d; /* Background color for the box */
+  background-color: #2a5d7d;
   padding: 10px;
   border-radius: 50px;
-  width: 90%; /* Make sure it does not exceed the container width */
-  height: 90%; /* Make it responsive to fit the screen */
+  width: 90%; 
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
 }
  
-/* Right Half - Slider and WikiPage Boxes */
 .right-half {
   width: 50%;
   display: flex;
@@ -40,12 +147,11 @@
   height: 100%;
 }
  
-/* Adjust the size of slider and wiki page */
 .slider-box {
-  background-color: #2a5d7d; /* Background color for the box */
+  background-color: #2a5d7d;
   padding: 10px;
   border-radius: 50px;
-  flex: 40%; /* Takes 40% of the right half */
+  flex: 40%;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -54,81 +160,13 @@
 }
  
 .wikipage-box {
-  background-color: #2a5d7d; /* Background color for the box */
+  background-color: #2a5d7d; 
   padding: 10px;
   border-radius: 50px;
-  flex: 60%; /* Takes 60% of the right half */
+  flex: 60%; 
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* overflow: hidden; */
 }
- 
- 
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
- 
-  body, html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #2a5d7d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
- 
-  .main-container {
-    display: grid;
-    grid-template-rows: repeat(9, 1fr);
-    grid-template-columns: 40% 60%;
-    grid-template-areas:
-        "searchbar slider"
-        "citylist slider"
-        "citylist slider"
-        "citylist wikipage"
-        "citylist wikipage"
-        "citylist wikipage"
-        "citylist wikipage"
-        "citylist wikipage"
-        "citylist wikipage";
-    width: 90vw;
-    height: 90vh;
-    gap: 4%;
-    margin-left: 20px;
-    margin-right: 60px;
-  }
- 
-  .searchbar-component {
-    grid-area: searchbar;
-    background: #ccc;
-    border-radius: 10px;
-    height: 100%;
-  }
- 
-  .citylist-component {
-    grid-area: citylist;
-    background: #ccc;
-    border-radius: 10px;
-    height: 100%;
-  }
- 
-  .slider-component {
-    grid-area: slider;
-    background: #ccc;
-    border-radius: 10px;
-    height: 100%;
-  }
- 
-  .wikipage-component {
-    grid-area: wikipage;
-    background: #ccc;
-    border-radius: 10px;
-    height: 100%;
-    overflow-y: scroll;
-  } */
- 
+  */

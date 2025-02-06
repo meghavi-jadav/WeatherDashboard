@@ -35,22 +35,23 @@ const WikiPage = ({ selectedCity }) => {
       
       {WikiPage && (
         <div className='wikipage'>
-          {/* <h2>Wikipedia Page for {city}</h2> */}
           <iframe
-          className='iframe'
-          id="wiki"
-            src = {WikiPage}
+            className='iframe'
+            id="wiki"
+            src={WikiPage}
             width="100%"
             height="320px"
             title='Wikipedia Page'
           ></iframe>
         </div>
       )}
-    </div>    
+    </div>
   );
 };
- 
+
 export default WikiPage;
- 
- 
+
+
+// import React, {useState} from 'react'
+// import './WikiPage.css'
  

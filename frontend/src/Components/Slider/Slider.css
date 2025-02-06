@@ -1,52 +1,123 @@
 /* Ensure the Carousel takes up full height and width */
-.carousel-item {
-    position: relative;
-    height: 100%;
-  }
-   
-  .slider-image {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Make the image cover the whole screen */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-   
-  .slider-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Make sure the image covers the whole container */
-    opacity: 0.6; /* Set opacity for background image */
-  }
-   
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); /* Darken the background with a transparent overlay */
-    display: flex;
+/* .carousel-item { */
+/* position: relative; */
+/* height: 100%; */
+/* color: white; */
+/* width: 100%; */
+/* object-fit: cover; */
+/* } */
+
+.slider {
+  /* position: relative; */
+  width: 100%;
+  height: 40vh;
+  /* Make the image cover the whole screen */
+  /* display: flex; */
+  /* padding-top: 30px; */
+  /* justify-content: left; */
+  align-items: center;
+  object-fit: fill;
+  margin-bottom: 20px;
+
+
+  /* display: inline-block; */
+}
+
+/* .slider-image img { */
+/* width: 100%; */
+/* height: 100%; */
+/* width: 100%; */
+/* object-fit: contain;  */
+/* Make sure the image covers the whole container */
+/* opacity: 0.6;  */
+/* Set opacity for background image */
+/* } */
+
+/* .overlay { */
+/* position: absolute; */
+/* top: 0;
+    left: 0; */
+/* width: 100%; */
+/* height: 100%; */
+/* background-color: rgba(0, 0, 0, 0.2); Darken the background with a transparent overlay */
+/* display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    text-align: center;
-  }
-   
-  .city-info h3 {
+    text-align: center; */
+/* object-fit: cover; */
+/* } */
+
+/* .city-info h3 {
     font-size: 2rem;
     font-weight: bold;
   }
    
   .city-info p {
     font-size: 1.2rem;
-  }
-   
-  .carousel-caption {
-    display: none; /* Hide default caption */
-  }
-   
-  .carousel-control-prev, .carousel-control-next {
-    display: none; /* Optional: Hide the carousel navigation arrows */
-  }
+  } */
+
+/* .carousel-caption { */
+/* display: none;   */
+/*Hide default caption*/
+/* } */
+
+/* .carousel-control-prev, .carousel-control-next { */
+/* display: none;  */
+/* Optional: Hide the carousel navigation arrows */
+/* } */
+
+.top {
+  /* display: inline-flex; */
+  display: flex;
+  /* justify-content: space-between; */
+  text-align: left;
+}
+
+.top i {
+  /* color: white; */
+  font-size: 25px;
+  margin-right: 5px;
+  margin-top: 2px;
+  color: rgb(241, 231, 231);
+}
+
+h5 {
+  color: rgb(241, 231, 231);
+}
+
+.mid {
+  color: white;
+  display: flex;
+  /* width: 10%; */
+  /* justify-content: space-between; */
+}
+.mid h5 {
+  color: white;
+  text-transform: capitalize;
+}
+
+.details {
+  padding-top: 30px;
+  padding-left: 10px;
+  display: block;
+}
+
+.last {
+  margin-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  /* padding-bottom: 40px; */
+}
+
+/* .last p{
+    word-spacing: 50px;
+  } */
+
+.icon img {
+  width: 150px;
+  height: 150px;
+}
