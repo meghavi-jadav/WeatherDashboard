@@ -12,7 +12,6 @@ const cities = [
   { name: "Mumbai", img: img1 },
   { name: "Pune", img: img2 },
   { name: "Delhi", img: img3 },
-  // Add more cities as needed
 ];
 
 const Slider = () => {
@@ -20,7 +19,7 @@ const Slider = () => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; // Replace with your OpenWeather API key
+      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; 
       const fetchedData = {};
 
       for (const city of cities) {
@@ -61,13 +60,10 @@ const Slider = () => {
       pause="hover"
     >
       {cities.map((city, index) => {
-        // Determine the weather condition for the current city
         const weatherCondition = cityDetails[city.name]?.details || "clear"; 
-        // Default to "clear"
-
-        // Get the corresponding image from the mapping object
+       
         const imgSrc = weatherImageMap[weatherCondition] || img1; 
-        // Default to clear if not found
+        
 
         return (
           <Carousel.Item key={index} className="carousel">
