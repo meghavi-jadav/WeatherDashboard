@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './CityList.css'
@@ -9,9 +10,10 @@ const CITIES_API_URL = "https://countriesnow.space/api/v0.1/countries/population
 const CityList = ({ setSelectedCity }) => {
 const [weatherData, setWeatherData] = useState([]);
 const [searchTerm, setSearchTerm] = useState("");
-const [citiesPerPage, setCitiesPerPage] = useState(10);
+const [citiesPerPage] = useState(10);
 const [loadedCities, setLoadedCities] = useState(citiesPerPage); 
 const [cities, setCities] = useState([]); 
+const [filteredCities, setFilteredCities] = useState([]);
   
   
 
@@ -45,7 +47,7 @@ useEffect(() => {
 
 
 
-  // useEffect(() => {
+// useEffect(() => {
 //   const fetchWeatherData = async () => {
 //       if (cities.length > 0) {
 //           try {
@@ -82,49 +84,86 @@ useEffect(() => {
 // }, [loadedCities, cities]); // Fetch weather data whenever loadedCities or cities change
 
 //---------------------------------------------//
+// useEffect(() => {
+//     const fetchWeatherData = async () => {
+//         if (cities.length > 0) {
+//             try {
+//               const results = [...weatherData]; // Keep previously fetched data
+//               let index = results.length; // Start fetching from where we left off
+//               while (results.length < loadedCities && index < cities.length) {
+//                     const city = cities[index];
+//                     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`);
+ 
+//                     if (response.ok) {
+//                       const data = await response.json();
+//                       results.push(data); // Append new data
+//                    } else {
+//                        console.warn(`City not found: ${city}`);
+//                   }
+//                     index++;
+//               }
+ 
+//               setWeatherData(results); // Update state with previous and new data
+//             } catch (error) {
+//                  console.error("Error fetching weather data:", error);
+//             }
+//       }
+//     };
+ 
+//   fetchWeatherData();
+// }, [loadedCities, cities]); 
+
+//   console.log("weather data",weatherData);
+
+  
 useEffect(() => {
-    const fetchWeatherData = async () => {
-        if (cities.length > 0) {
-            try {
-              const results = [...weatherData]; // Keep previously fetched data
-              let index = results.length; // Start fetching from where we left off
-              while (results.length < loadedCities && index < cities.length) {
-                    const city = cities[index];
-                    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`);
+  const fetchWeatherData = async () => {
+    if (filteredCities.length > 0) {
+      try {
+        const results = [...weatherData]; // Keep previously fetched data
+let fetchedCities = results.map(w => w.name.toLowerCase());
  
-                    if (response.ok) {
-                      const data = await response.json();
-                      results.push(data); // Append new data
-                   } else {
-                       console.warn(`City not found: ${city}`);
-                  }
-                    index++;
-              }
- 
-              setWeatherData(results); // Update state with previous and new data
-            } catch (error) {
-                 console.error("Error fetching weather data:", error);
+        for (let city of filteredCities.slice(0, loadedCities)) {
+          if (!fetchedCities.includes(city.toLowerCase())) {
+            const response = await fetch(
+`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`
+            );
+            if (response.ok) {
+              const data = await response.json();
+              results.push(data);
+            } else {
+              console.warn(`City not found: ${city}`);
             }
+          }
+        }
+ 
+        setWeatherData(results);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
       }
-    };
+    }
+  };
  
   fetchWeatherData();
-}, [loadedCities, cities]); 
-
-  
-  
+}, [filteredCities, loadedCities]); // Re-fetch on search or load more
 //---------------------------------------------//
-const filteredCities = weatherData.filter(city =>
-  city.name && city.main && typeof city.main.temp_min === 'number' && typeof city.main.temp_max === 'number' &&
-  (searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase()))
-);
+// const filteredCities = weatherData.filter(city =>
+//   city.name && city.main && typeof city.main.temp_min === 'number' && typeof city.main.temp_max === 'number' &&
+//   (searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase()))
+// );
 
+// 
+useEffect(() => {
+  if (searchTerm.length >= 2) {
+    const newFilteredCities = cities.filter(city =>
+      city.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCities(newFilteredCities);
+  } else {
+    setFilteredCities(cities.slice(0, loadedCities)); // Show initial list when no search
+  }
+}, [searchTerm, cities, loadedCities]);
 
-
-
-
-
-  
 
 const loadMoreCities = () => {
   setLoadedCities(prev => Math.min(prev + citiesPerPage, cities.length)); // Load more cities
@@ -137,6 +176,17 @@ const loadMoreCities = () => {
 //     setLoadedCities(prev => Math.min(prev + citiesPerPage, filteredCities.length));
 // };
 
+// const displayedCities = filteredCities.slice(0, loadedCities).map(city => {
+//   return weatherData.find(weather => weather.name === city);
+// }).filter(city => city !== undefined);
+
+const displayedCities = filteredCities
+  .map(city => {
+const weather = weatherData.find(w => w.name.toLowerCase() === city.toLowerCase());
+    return weather ? weather : { name: city, main: { temp_min: "N/A", temp_max: "N/A" } };
+  });
+
+console.log("display cities",displayedCities);
 
 return (
   <div className="citylist-container">
@@ -157,7 +207,7 @@ return (
             </tr>
           </thead>
           <tbody>
-              {filteredCities.map((city, index) => (
+              {displayedCities.map((city, index) => (
                 <tr key={index}>
                   <td><button onClick={() => setSelectedCity(city.name)}>{city.name}</button></td>
                   <td>{city.main?.temp_min || "N/A"}</td>

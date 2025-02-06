@@ -37,7 +37,7 @@ const Slider = () => {
           details: data.weather[0].description,
         };
       }
-      console.log(fetchedData);
+      // console.log(fetchedData);
       setCityDetails(fetchedData);
     };
 
