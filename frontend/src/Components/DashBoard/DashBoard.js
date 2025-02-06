@@ -5,14 +5,14 @@ import WikiPage from '../WikiPage/WikiPage.js';
 import './DashBoard.css';
  
 export default function DashBoard() {
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState("pune");
  
   return (
     <div className='main-container'>
       {/* Left Half - CityList */}
       <div className='left-half'>
         <div className='citylist-box'>
-          <CityList setSelectedCity={setSelectedCity} />
+          <CityList setSelectedCity={setSelectedCity}  />
         </div>
       </div>
  

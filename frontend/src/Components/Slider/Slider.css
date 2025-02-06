@@ -9,15 +9,17 @@
 
 .slider {
   /* position: relative; */
-  /* width: 100%; */
+  width: 100%;
   height: 40vh;
   /* Make the image cover the whole screen */
   /* display: flex; */
   /* padding-top: 30px; */
   /* justify-content: left; */
   align-items: center;
-  object-fit: cover;
+  object-fit: fill;
   margin-bottom: 20px;
+
+
   /* display: inline-block; */
 }
 
