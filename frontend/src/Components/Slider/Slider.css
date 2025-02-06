@@ -6,6 +6,9 @@
   margin-bottom: 20px;
 }
 
+.carousel-inner {
+  height: 100%;
+}
 .top {
   display: flex;
   text-align: left;
@@ -48,6 +51,6 @@ h5 {
 }
 
 .icon img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }

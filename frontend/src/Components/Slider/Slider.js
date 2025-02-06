@@ -56,7 +56,7 @@ const Slider = () => {
     <Carousel
       data-bs-theme="dark"
       controls={false}
-      interval={2000}
+      interval={1950}
       pause="hover"
     >
       {cities.map((city, index) => {
@@ -84,9 +84,9 @@ const Slider = () => {
               </div>
 
               <div className="last">
-                <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
-                <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
-                <p>Pressure: {cityDetails[city.name]?.pressure} mb</p>
+                <p>Wind<br></br> {cityDetails[city.name]?.wind?.speed} m/s</p>
+                <p>Humidity<br></br> {cityDetails[city.name]?.humidity}%</p>
+                <p>Pressure<br></br> {cityDetails[city.name]?.pressure} mb</p>
               </div>
             </div>
           </Carousel.Item>
