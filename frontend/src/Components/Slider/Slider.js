@@ -2,98 +2,135 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Slider.css";
-import img1 from "./images/spune.jpg";
-import img2 from "./images/mumbai.jpg";
-import img3 from "./images/delhii.jpg";
- 
-// Mocked API call to fetch city details
-const fetchCityDetails = async (city) => {
-  // Replace this with an actual API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        name: city,
-        temperature: `${Math.floor(Math.random() * 30) + 20}°C`,
-        description: "Sunny weather",
-      });
-    }, 1000);
-  });
-};
- 
-export default function Slider() {
-  const [cities, setCities] = useState([
-    { name: "Pune", img: img1 },
-    { name: "Mumbai", img: img2 },
-    { name: "Delhi", img: img3 },
-  ]);
+import img1 from "./images/clear.png";
+import img2 from "./images/cloud.png";
+import img3 from "./images/haze.png";
+import img4 from "./images/rain.png";
+import img5 from "./images/smoke.png";
+
+const cities = [
+  { name: "Mumbai", img: img1 },
+  { name: "Pune", img: img2 },
+  { name: "Delhi", img: img3 },
+  // Add more cities as needed
+];
+
+const Slider = () => {
   const [cityDetails, setCityDetails] = useState({});
- 
+
   useEffect(() => {
-    const fetchData = async () => {
-      const details = {};
+    const fetchWeatherData = async () => {
+      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; // Replace with your OpenWeather API key
+      const fetchedData = {};
+
       for (const city of cities) {
-details[city.name] = await fetchCityDetails(city.name);
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&appid=${apiKey}&units=metric`
+        );
+        const data = await response.json();
+        fetchedData[city.name] = {
+          temperature: data.main.temp,
+          wind: data.wind,
+          humidity: data.main.humidity,
+          pressure: data.main.pressure,
+          icon: data.weather.icon,
+          details: data.weather[0].description,
+        };
       }
-      setCityDetails(details);
+      console.log(fetchedData);
+      setCityDetails(fetchedData);
     };
-    fetchData();
-  }, [cities]);
- 
+
+    fetchWeatherData();
+  }, []);
+
+  const weatherImageMap = {
+    clear: img1,
+    cloud: img2,
+    haze: img3,
+    rain: img4,
+    smoke: img5
+  };
+
   return (
-    <Carousel 
-    data-bs-theme="dark"
-    controls={false}
-    interval={2500}
-    pause="hover">
-        {cities.map((city, index) => (
-          <Carousel.Item key={index}>
-            <div className="slider-image">
-              <img className="d-block w-100" src={city.img} alt={`${city.name} slide`}/>
-              <div className="overlay">
-                <div className="city-info">
-                  <h3>{city.name}</h3>
-                  <p>{cityDetails[city.name]?.temperature}</p>
+    <div className="slider-container">
+    <Carousel
+      data-bs-theme="dark"
+      controls={false}
+      interval={2000}
+      pause="hover"
+    >
+      {cities.map((city, index) => {
+        // Determine the weather condition for the current city
+        const weatherCondition = cityDetails[city.name]?.details || "clear"; // Default to "clear"
+
+        // Get the corresponding image from the mapping object
+        const imgSrc = weatherImageMap[weatherCondition] || img1; // Default to clear if not found
+
+        return (
+          <Carousel.Item key={index} className="carousel">
+            <div className="slider">
+              <div className="top">
+                <i className="fa-solid fa-location-dot"></i>
+                <h5>{city.name}</h5>
+              </div>
+
+              <div className="mid">
+                <div className="icon">
+                  <img src={imgSrc} alt="weather-icon" />
+                </div>
+                <div className="details">
+                  <h1>{cityDetails[city.name]?.temperature}°C</h1>
+                  <h5>{weatherCondition}</h5>
                 </div>
               </div>
-            </div> 
+
+              <div className="last">
+                <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
+                <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
+                <p>Pressure: {cityDetails[city.name]?.pressure} mb</p>
+              </div>
+            </div>
           </Carousel.Item>
-        ))}
-      </Carousel>
+        );
+      })}
+    </Carousel>
+  </div>
+
   );
+};
+
+export default Slider;
+
+{
+  /* {cities.map((city,index) => (
+        <div className='city'>
+          <h3>{city.name}</h3>
+          <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
+          <p>Wind Speed: {cityDetails[city.name]?.wind?.speed} m/s</p>
+          <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
+        </div>
+        
+      ))} */
 }
 
-
-// import React, { useEffect, useState } from 'react';
-
-// const cities = ['Pune', 'Mumbai', 'Delhi'];
-// const apiKey = 'c84d90a747b71c83cfbfbafc752196b9';
-
-// export default function Slider() {
-//   const [temperatures, setTemperatures] = useState({});
-
-//   useEffect(() => {
-//     const fetchTemperatures = async () => {
-//       const temps = {};
-//       for (const city of cities) {
-//         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-//         const response = await fetch(weatherUrl);
-//         const data = await response.json();
-//         temps[city] = data.main.temp;
-//       }
-//       setTemperatures(temps);
-//     };
-
-//     fetchTemperatures();
-//   }, []);
-
-//   return (
-//     <div className='slider-container'>
-//       {cities.map((city) => (
-//         <div key={city} className='city'>
-//           <h3>{city}</h3>
-//           <p>{temperatures[city]}°C</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
+{
+  /* <img className="d-block w-100" src={city.img} alt={`${city.name} slide`}/> */
+}
+{
+  /* <div className="overlay">
+                <div className="city-info">
+                  <h2>{city.name}</h2>
+                  <p>Temperature: {cityDetails[city.name]?.temperature}°C</p>
+                  <p>Wind: {cityDetails[city.name]?.wind?.speed} m/s</p>
+                  <p>Humidity: {cityDetails[city.name]?.humidity}%</p>
+                  <p>Pressure: {cityDetails[city.name]?.pressure}mb</p>
+                </div>
+              </div> */
+}
+{
+  /* <div className="container"> */
+}
+{
+  /* </div> */
+}
