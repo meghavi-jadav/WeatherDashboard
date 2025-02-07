@@ -12,7 +12,7 @@
   display: inline;
 }
  
-.wikipage-container input {
+/* .wikipage-container input {
   padding: 10px;
   width: 50%;
   margin-bottom: 20px;
@@ -21,23 +21,12 @@
   font-size: 16px;
   outline: none;
 }
- 
-/* .wikipage-container button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
- 
-}
+
  
 .wikipage-container button:hover {
   background-color: #45a049;
 } */
- 
+  */
  
 .wikipage {
   width: 100%;
@@ -46,20 +35,3 @@
   border-radius: 5px;
  
 }
-/* .wikipage-container .wikipage {
-  width: 100%;
-  height: 100%;  
-  margin-top: 20px;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-} */
- 
-/* .wikipage-container iframe {
-  width: 100%;
-  height: 100vh;
-  border-radius: 25px;
-  border: none;
-  object-fit: cover;
- 
-} */

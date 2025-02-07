@@ -30,9 +30,7 @@ const WikiPage = ({ selectedCity }) => {
   fetchWikipedia();}, [selectedCity]);
   return (
     <div className='wikipage-container'>
-      {/* <h1>Wikipedia Page</h1> */}
-      
-      
+      {/* <h1>Wikipedia Page</h1> */}      
       {WikiPage && (
         <div className='wikipage'>
           <iframe
