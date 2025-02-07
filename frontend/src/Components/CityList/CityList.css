@@ -42,7 +42,7 @@
  
   table {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     color: white;
     /* color: black; */
     border-collapse: collapse;
@@ -54,8 +54,6 @@
   }
  
   table thead, tbody{
-    /* background-color: rgb(112, 110, 110); */
-    /* background-color: aqua; */
     background-color: rgb(87, 84, 84);
   }
  

@@ -96,7 +96,7 @@ return (
     <input
       type="text"
       className="search-bar"
-      placeholder="Search city..."
+      placeholder=" Search city..."
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
     />
