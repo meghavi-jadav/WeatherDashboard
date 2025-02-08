@@ -1,49 +1,41 @@
-/* /* .citylist-container {
-max-width: 900px;
-margin: 20px auto;
-padding: 20px;
-background-color: #f9f9f9;
-border-radius: 8px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-} */
-
 .citylist-container{
-width: 100%;
-margin: auto;
-display: flex;
-flex-direction: column;
-/* align-items: center; */
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
+/* .citylist-container input{
+  color: #6c9cc4 ;
+} */
+
 .search-bar{
-width: 100%;
-padding: 5px;
-margin-bottom: 10px;
-border: 1px solid #ccc;
-border-radius: 50px;
-font-size: 16px;
-background-color: black;
-color: white;
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 10px;
+  border: 1px solid #6c9cc4;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #e0eaf4;
+  color: #6c9cc4;
 }
 
 .table-container{
-width: 100%;
-height: 65vh;
-overflow-y: auto;
-border-radius: 5px;
-scrollbar-width:  thin; 
-/* background-color: #363636; */
-/* border: 1px solid #ccc; */
+  width: 100%;
+  height: 65vh;
+  overflow-y: auto;
+  border-radius: 5px;
+  scrollbar-width:  none; 
+/* scrollbar-width:  thin;  */
 }
 
 table{
-background-color: #1e1e1e;
-table-layout: fixed;
-/* border-collapse: collapse; */
-color: white;
-width: 100%;
-height: 100%;
+  background-color: #b6cbdd;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color:  #24609c;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -53,12 +45,9 @@ td{
 
 
 table tbody tr td button{
-color: white;
+  color: #24609c;
 }
 
-table thead{
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
 
 table thead th{
   padding: 4px 8px;
@@ -66,6 +55,7 @@ table thead th{
   letter-spacing: 0.1rem;
   font-size: medium;
   font-weight: 700;
+  /* position: sticky; */
 }
 
 table tbody td{
@@ -74,8 +64,8 @@ table tbody td{
 }
 
 table tbody tr{
- background-color: black;
- border: solid 8px #1e1e1e;
+ background-color: #e0eaf4;
+ border: solid 8px #b6cbdd;
 }
 
 
@@ -84,13 +74,13 @@ margin-top: 10px;
 }
 
 table thead tr th{
-color: white;
+color:  #24609c;
 }
 
 .load-more-container button{
 padding: 10px 15px;
 font-size: 16px;
-background-color: #363636;
+background-color:  #24609c;
 color: white;
 border: none;
 border-radius: 25px;
