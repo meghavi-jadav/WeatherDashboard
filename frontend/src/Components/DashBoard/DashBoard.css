@@ -97,9 +97,6 @@
   overflow: scroll;
 }
 
-.right-half{
-  /* flex: 0; */
-}
 .left-half{
   flex: 0;
   margin-bottom: 10px;
