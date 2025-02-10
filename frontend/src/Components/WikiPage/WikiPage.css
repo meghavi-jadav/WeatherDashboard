@@ -13,9 +13,11 @@
   opacity: #2a5d7d 0.9;
 }
  
-iframe .skin--responsive .mw-page-container{
-  background-color: #2a5d7d;
-}
+/* 
+.skin--responsive .mw-page-container {
+  background-color: #2a5d7d !important;
+} */
+
 
 /* .wikipage {
   width: 100%;
