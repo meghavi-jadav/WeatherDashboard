@@ -1,32 +1,56 @@
-.slider-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .carousel-item img {
-    opacity: 0.9;
-    max-height: 500px;
-    object-fit: cover;
-  }
-  
-  .carousel-caption {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .carousel-caption h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .carousel-caption p {
-    font-size: 1.2rem;
-    color: #ddd;
-  }
+.slider {
+  width: 100%;
+  height: 40vh;
+  align-items: center;
+  object-fit: fill;
+  margin-bottom: 20px;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+.top {
+  display: flex;
+  text-align: left;
+}
+
+.top i {
+  font-size: 25px;
+  margin-right: 5px;
+  margin-top: 2px;
+  color: rgb(241, 231, 231);
+}
+
+h5 {
+  color: rgb(241, 231, 231);
+}
+
+.mid {
+  color: white;
+  display: flex;
+}
+
+.mid h5 {
+  color: white;
+  text-transform: capitalize;
+}
+
+.details {
+  padding-top: 30px;
+  padding-left: 10px;
+  display: block;
+}
+
+.last {
+  margin-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon img {
+  width: 100px;
+  height: 100px;
+}

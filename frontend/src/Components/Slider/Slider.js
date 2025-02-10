@@ -2,52 +2,100 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Slider.css";
-import img1 from "./spune.jpg";
+import img1 from "./images/clear.png";
+import img2 from "./images/cloud.png";
+import img3 from "./images/haze.png";
+import img4 from "./images/rain.png";
+import img5 from "./images/smoke.png";
 
-// Mocked API call to fetch city details
-const fetchCityDetails = async (city) => {
-  // Replace this with an actual API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ name: city, temperature: `${Math.floor(Math.random() * 30) + 20}°C`, description: "Sunny weather" });
-    }, 1000);
-  });
-};
+const cities = [
+  { name: "Mumbai", img: img1 },
+  { name: "Pune", img: img2 },
+  { name: "Delhi", img: img3 },
+];
 
-export default function Slider() {
-  const [cities, setCities] = useState([
-    { name: "Pune", img: img1 },
-    { name: "Mumbai", img: img1 },
-    { name: "Delhi", img: img1 }
-  ]);
-
+const Slider = () => {
   const [cityDetails, setCityDetails] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      const details = {};
+    const fetchWeatherData = async () => {
+      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; 
+      const fetchedData = {};
+
       for (const city of cities) {
-        details[city.name] = await fetchCityDetails(city.name);
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&appid=${apiKey}&units=metric`
+        );
+        const data = await response.json();
+        fetchedData[city.name] = {
+          temperature: data.main.temp,
+          wind: data.wind,
+          humidity: data.main.humidity,
+          pressure: data.main.pressure,
+          icon: data.weather.icon,
+          details: data.weather[0].description,
+        };
       }
-      setCityDetails(details);
+      // console.log(fetchedData);
+      setCityDetails(fetchedData);
     };
-    fetchData();
-  }, [cities]);
+
+    fetchWeatherData();
+  }, []);
+
+  const weatherImageMap = {
+    clear: img1,
+    cloud: img2,
+    haze: img3,
+    rain: img4,
+    smoke: img5
+  };
 
   return (
     <div className="slider-container">
-      <Carousel data-bs-theme="dark" controls={false} interval={2000} pause="hover">
-        {cities.map((city, index) => (
-          <Carousel.Item key={index}>
-            <img className="d-block w-100" src={city.img} alt={`${city.name} slide`} />
-            <Carousel.Caption>
-              <h3>{city.name}</h3>
-              <p>{cityDetails[city.name]?.temperature}</p>
-              <p>{cityDetails[city.name]?.description}</p>
-            </Carousel.Caption>
+    <Carousel
+      data-bs-theme="dark"
+      controls={false}
+      interval={1950}
+      pause="hover"
+    >
+      {cities.map((city, index) => {
+        const weatherCondition = cityDetails[city.name]?.details || "clear"; 
+       
+        const imgSrc = weatherImageMap[weatherCondition] || img1; 
+        
+
+        return (
+          <Carousel.Item key={index} className="carousel">
+            <div className="slider">
+              <div className="top">
+                <i className="fa-solid fa-location-dot"></i>
+                <h5>{city.name}</h5>
+              </div>
+
+              <div className="mid">
+                <div className="icon">
+                  <img src={imgSrc} alt="weather-icon" />
+                </div>
+                <div className="details">
+                  <h1>{cityDetails[city.name]?.temperature}°C</h1>
+                  <h5>{weatherCondition}</h5>
+                </div>
+              </div>
+
+              <div className="last">
+                <p>Wind<br></br> {cityDetails[city.name]?.wind?.speed} m/s</p>
+                <p>Humidity<br></br> {cityDetails[city.name]?.humidity}%</p>
+                <p>Pressure<br></br> {cityDetails[city.name]?.pressure} mb</p>
+              </div>
+            </div>
           </Carousel.Item>
-        ))}
-      </Carousel>
-    </div>
+        );
+      })}
+    </Carousel>
+  </div>
+
   );
-}
+};
+
+export default Slider;
