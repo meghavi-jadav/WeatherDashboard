@@ -1,0 +1,32 @@
+.slider-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .carousel-item img {
+    opacity: 0.9;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .carousel-caption h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.2rem;
+    color: #ddd;
+  }

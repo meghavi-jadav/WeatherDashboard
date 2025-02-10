@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const WikiPage = () => {
+const WikiPage = () => { 
 
   const [city, setCity] = useState('');
   const [WikiPage, setWikiPage] = useState(null);
