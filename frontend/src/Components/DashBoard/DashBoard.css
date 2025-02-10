@@ -8,23 +8,23 @@
 .main-container {
   display: flex;
   height: 100vh; 
-  background-color: black;
+  background-color: #ffffff;
   padding: 20px;
   gap: 10px;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #1e1e1e;
 }
 
 .left-half {
   flex: 1.4;
-  background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+  background-color: #b6cbdd;
   border-radius: 5px;
   width: 900%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  flex-direction: column; 
+  box-shadow: 0 4px 20px #465668;
   padding: 10px;
   overflow: hidden;
   height: max-content;
@@ -39,10 +39,6 @@
   scrollbar-width: thin;
 }
 
-.citylist-box::-webkit-scrollbar {
-  width: 8px;
-}
-
 .right-half {
   flex: 1.6;
   display: flex;
@@ -52,31 +48,25 @@
 }
 
 .slider-box {
-  background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%);
+  background-color: #e0ebf5;
   padding: 10px 10px;
   border-radius: 5px;
+  box-shadow: 0 4px 20px #465668;
   justify-content: center;
   width: 65%;
   height: 45%;
   margin-left: 100px;
 }
 
-.wikipage-box {
-  /* background: linear-gradient(145deg, #252b36, #1a1f27); */
-  /* background: radial-gradient(circle, rgba(37,43,54,1) 20%, rgba(26,31,39,1) 75%); */
-  /* background-color: #252b36; */
-  
-  
+.wikipage-box {  
   border-radius: 5px;
-  flex: 0.6;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  flex: 0.6; 
+  box-shadow: 0 4px 20px #465668;
   scrollbar-width: thin;
   scrollbar-color: #3c4a5a #1e222d;
   width: 100%;
 }
 
-
-/* responsive */
 @media (max-width: 750px) {
   .main-container {
     flex-direction: column;
@@ -107,9 +97,15 @@
   overflow: scroll;
 }
 
-
+.right-half{
+  /* flex: 0; */
+}
 .left-half{
   flex: 0;
+  margin-bottom: 10px;
 }
 
+.slider-box{
+  margin-bottom: 10px;
+}
 }
