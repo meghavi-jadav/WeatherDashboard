@@ -53,20 +53,26 @@
   background-color: #e0ebf5;
   padding: 10px 10px;
   border-radius: 5px;
-  box-shadow: 0 4px 20px #465668;
+  box-shadow: 0 4px 20px  #465668;
   justify-content: center;
   width: 65%;
   height: 45%;
   margin-left: 100px;
+  margin-top: 5px;
 }
 
 .wikipage-box {  
   border-radius: 5px;
-  flex: 0.6; 
+  flex: 1.6; 
   box-shadow: 0 4px 20px #465668;
   scrollbar-width: thin;
   scrollbar-color: #3c4a5a #1e222d;
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 900px;
+  overflow: hidden;
 }
 
 @media (max-width: 750px) {
@@ -99,9 +105,6 @@
   overflow: scroll;
 }
 
-.right-half{
-  /* flex: 0; */
-}
 .left-half{
   flex: 0;
   margin-bottom: 10px;
