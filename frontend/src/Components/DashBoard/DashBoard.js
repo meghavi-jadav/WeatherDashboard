@@ -6,8 +6,10 @@ import './DashBoard.css';
 import Theme from '../Theme/Theme.js';
  
 export default function DashBoard() {
-  const [selectedCity, setSelectedCity] = useState("Pune");
+ 
   const [mode , setMode] = useState("light");
+  const [selectedCity, setSelectedCity] = useState("Pune");
+ 
   return (
     <div className='main-container'>
       <div className='toggle'>
