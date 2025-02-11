@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './CityList.css'
 import Spinner from 'react-bootstrap/Spinner';
@@ -177,6 +176,14 @@ const handleSearchInputChange=(e)=>{
 
 }
 
+//for displaying the list on top
+const tableRef = useRef(null);
+useEffect(() => {
+  if (tableRef.current) {
+    tableRef.current.scrollTop = tableRef.current.scrollHeight;
+  }
+}, [displayedCities]);
+
 useEffect(() => {
   if (searchTerm && filteredCities.length === 0) {
     alert("No matches found!");
@@ -197,7 +204,7 @@ return (
     <input
       type="text"
       className="search-bar"
-      placeholder="Search by city name"
+      placeholder="Search city..."
       value={searchTerm}
       pattern="[A-Za-z]*"
       title="Only letters are allowed"
@@ -205,6 +212,7 @@ return (
       onChange={handleSearchInputChange}
     />
       <div className="table-container">
+        <div style={{ maxHeight: '400px', overflowY: 'auto' }} ref={tableRef}>
         <table >
           <thead>
             <tr>
@@ -228,6 +236,7 @@ return (
           </tbody>
          
         </table>
+        </div> 
       </div>
  
     {loadedCities <= filteredCities.length && (
