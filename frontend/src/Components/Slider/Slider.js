@@ -14,12 +14,12 @@ const cities = [
   { name: "Delhi", img: img3 },
 ];
 
-const Slider = () => {
+const Slider = ({mode}) => {
   const [cityDetails, setCityDetails] = useState({});
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; 
+      const apiKey = process.env.REACT_APP_API_KEY; 
       const fetchedData = {};
 
       for (const city of cities) {

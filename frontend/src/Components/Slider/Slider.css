@@ -14,24 +14,27 @@
   text-align: left;
 }
 
-.top i {
+.top  i {
   font-size: 25px;
   margin-right: 5px;
   margin-top: 2px;
-  color: rgb(241, 231, 231);
+  color: #24609c;
 }
 
+
+
+
 h5 {
-  color: rgb(241, 231, 231);
+  color:#24609c;
 }
 
 .mid {
-  color: white;
+  color: #24609c;
   display: flex;
 }
 
 .mid h5 {
-  color: white;
+  color: #24609c;
   text-transform: capitalize;
 }
 
@@ -45,7 +48,7 @@ h5 {
   margin-top: 15px;
   padding-left: 10px;
   padding-right: 10px;
-  color: white;
+  color: #24609c;
   display: flex;
   justify-content: space-between;
 }
@@ -53,4 +56,8 @@ h5 {
 .icon img {
   width: 100px;
   height: 100px;
+}
+
+[data-bs-theme=dark].carousel .carousel-indicators [data-bs-target] {
+  background-color: #24609c;
 }
