@@ -5,7 +5,7 @@ import WikiPage from '../WikiPage/WikiPage.js';
 import './DashBoard.css';
  
 export default function DashBoard() {
-  const [selectedCity, setSelectedCity] = useState("pune");
+  const [selectedCity, setSelectedCity] = useState("Pune");
  
   return (
     <div className='main-container'>

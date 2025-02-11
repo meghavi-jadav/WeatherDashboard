@@ -25,8 +25,8 @@
   height: 65vh;
   overflow-y: auto;
   border-radius: 5px;
-  scrollbar-width:  none; 
-/* scrollbar-width:  thin;  */
+  /* scrollbar-width:  none;  */
+scrollbar-width:  thin; 
 }
 
 table{
