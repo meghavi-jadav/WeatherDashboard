@@ -36,6 +36,7 @@ table{
   color:  #24609c;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }
 
 

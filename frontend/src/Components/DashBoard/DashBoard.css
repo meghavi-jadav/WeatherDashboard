@@ -8,7 +8,7 @@
 .main-container {
   display: flex;
   height: 100vh; 
-  background-color: #ffffff;
+  background-color: rgb(230, 240, 248);
   padding: 20px;
   gap: 10px;
   box-sizing: border-box;
@@ -28,6 +28,7 @@
   padding: 10px;
   overflow: hidden;
   height: max-content;
+  margin-top: 10px;
 }
 
 .citylist-box {
@@ -51,20 +52,26 @@
   background-color: #e0ebf5;
   padding: 10px 10px;
   border-radius: 5px;
-  box-shadow: 0 4px 20px #465668;
+  box-shadow: 0 4px 20px  #465668;
   justify-content: center;
   width: 65%;
   height: 45%;
   margin-left: 100px;
+  margin-top: 5px;
 }
 
 .wikipage-box {  
   border-radius: 5px;
-  flex: 0.6; 
+  flex: 1.7; 
   box-shadow: 0 4px 20px #465668;
   scrollbar-width: thin;
   scrollbar-color: #3c4a5a #1e222d;
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* height: 100px; */
+  overflow: hidden;
 }
 
 @media (max-width: 750px) {

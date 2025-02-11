@@ -1,7 +1,6 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './CityList.css'
+import './CityList.css';
 
 
 const API_KEY = "c84d90a747b71c83cfbfbafc752196b9";
@@ -34,9 +33,6 @@ useEffect(() => {
           } else {
             console.error("Unexpected data structure:", data);
           }
-          
-        
-
         } catch (error) {
         console.error("Error fetching city names:", error);
         }
@@ -44,37 +40,6 @@ useEffect(() => {
 
     fetchCities();
 }, []);
-//console.log("cities",cities);
-
-//---------------------------------------------//
-// useEffect(() => {
-//     const fetchWeatherData = async () => {
-//         if (cities.length > 0) {
-//             try {
-//               const results = [...weatherData]; // Keep previously fetched data
-//               let index = results.length; // Start fetching from where we left off
-//               while (results.length < loadedCities && index < cities.length) {
-//                     const city = cities[index];
-//                     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`);
- 
-//                     if (response.ok) {
-//                       const data = await response.json();
-//                       results.push(data); // Append new data
-//                    } else {
-//                        console.warn(`City not found: ${city}`);
-//                   }
-//                     index++;
-//               }
- 
-//               setWeatherData(results); // Update state with previous and new data
-//             } catch (error) {
-//                  console.error("Error fetching weather data:", error);
-//             }
-//       }
-//     };
- 
-//   fetchWeatherData();
-// }, [loadedCities, cities]); 
 
   console.log("weather data",weatherData);
 
@@ -153,16 +118,6 @@ let fetchedCities = results.map(w => w.name.toLowerCase());
 }, [filteredCities, loadedCities]); // Refetch when search/filter changes
 
 
-//---------------------------------------------//
-// const filteredCities = weatherData.filter(city =>
-//   city.name && city.main && typeof city.main.temp_min === 'number' && typeof city.main.temp_max === 'number' &&
-//   (searchTerm.length < 2 || city.name.toLowerCase().includes(searchTerm.toLowerCase()))
-// );
-
-// 
-// console.log("weather data",weatherData);
-// console.log("filtered cities",filteredCities);
-
 useEffect(() => {
   if (searchTerm.length >= 2) {
     const newFilteredCities = cities.filter(city =>
@@ -180,22 +135,6 @@ const loadMoreCities = () => {
   // Load more cities
 };
 
-// const reloadCities = () => {
-//   setLoadedCities(10); // Load more cities
-// };
-//   const loadMoreCities = () => {
-//     setLoadedCities(prev => Math.min(prev + citiesPerPage, filteredCities.length));
-// };
-
-// const displayedCities = filteredCities.slice(0, loadedCities).map(city => {
-//   return weatherData.find(weather => weather.name === city);
-// }).filter(city => city !== undefined);
-
-// const displayedCities = filteredCities
-//   .map(city => {
-//     const weather = weatherData.find(w => w.name.toLowerCase() === city.toLowerCase());
-//     return weather ? weather : { name: city, main: { temp_min: "N/A", temp_max: "N/A" } };
-//       });
 
 const displayedCities = filteredCities.map(city => {
   const weather = weatherData.find(w => w.name.toLowerCase() === city.toLowerCase());
@@ -207,8 +146,13 @@ const displayedCities = filteredCities.map(city => {
   }
 }).filter(city => city !== null); // Filter out null values
 
-// const displayedCities = weatherData.filter(city => city.main && typeof city.main.temp_min === "number" && typeof city.main.temp_max === "number" );
-// console.log("display cities",displayedCities);
+// for displaying the list on top
+const tableRef = useRef(null);
+useEffect(() => {
+  if (tableRef.current) {
+    tableRef.current.scrollTop = tableRef.current.scrollHeight;
+  }
+}, [displayedCities]);
 
 return (
   <div className="citylist-container">
@@ -220,6 +164,7 @@ return (
       onChange={(e) => setSearchTerm(e.target.value)}
     />
       <div className="table-container">
+        <div style={{ maxHeight: '400px', overflowY: 'auto' }} ref={tableRef}>
         <table >
           <thead>
             <tr>
@@ -243,6 +188,7 @@ return (
           </tbody>
          
         </table>
+        </div> 
       </div>
 
     {loadedCities <= filteredCities.length && (
@@ -259,10 +205,3 @@ return (
 };
 
 export default CityList;
-
-
-
-
-
-
-
