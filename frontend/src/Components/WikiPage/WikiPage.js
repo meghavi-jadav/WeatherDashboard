@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './WikiPage.css';
 import parse from 'html-react-parser';
 
-const WikiPage = ({ selectedCity }) => {
+const WikiPage = ({ selectedCity , mode} ) => {
   // Normalize city name for Wikipedia API compatibility
   const normalizedCity = selectedCity
     .normalize("NFD")
@@ -39,7 +39,7 @@ const WikiPage = ({ selectedCity }) => {
   // }, [wikiContent]);
 
   return (
-    <div className="wikipage-container">
+    <div className={mode === "light" ? "wikipage-container-light" : "wikipage-container-dark"}>
       {wikiContent ? (
         <div className="wiki-content">
           <h2>{selectedCity}</h2>

@@ -6,7 +6,7 @@
   overflow-y: hidden;
 }
 
-.main-container {
+.main-container-light {
   display: flex;
   height: 100vh; 
   background-color: rgb(230, 240, 248);
@@ -16,7 +16,17 @@
   color: #1e1e1e;
 }
 
-.left-half {
+.main-container-dark {
+  display: flex;
+  height: 100vh; 
+  background-color:  #0F0F0F;
+  padding: 20px;
+  gap: 10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+}
+
+.left-half-light{
   flex: 1.4;
   background-color: #b6cbdd;
   border-radius: 5px;
@@ -31,6 +41,23 @@
   height: max-content;
   margin-top: 10px;
 }
+
+.left-half-dark{
+  flex: 1.4;
+  background-color: #1E1E1E;
+  border-radius: 5px;
+  width: 900%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  overflow: hidden;
+  height: max-content;
+  margin-top: 10px;
+}
+
 
 .citylist-box {
   padding: 20px;
@@ -50,7 +77,7 @@
   overflow: hidden;
 }
 
-.slider-box {
+.slider-box-light {
   
   background-color: #e0ebf5;
   padding: 10px 10px;
@@ -63,7 +90,19 @@
   margin-top: 5px;
 }
 
-.wikipage-box {  
+.slider-box-dark {
+  background-color: #1E1E1E;
+  padding: 10px 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  width: 65%;
+  height: 45%;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+
+.wikipage-box-light{  
   border-radius: 5px;
   flex: 1.7; 
   box-shadow: 0 4px 20px #465668;
@@ -76,6 +115,21 @@
   height: 900px;
   overflow-y: auto;
   background-color: #e0ebf5;
+}
+
+.wikipage-box-dark{  
+  border-radius: 5px;
+  flex: 1.7; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+  scrollbar-base-color: #e0ebf5;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 900px;
+  overflow-y: auto;
+  background-color: #1E1E1E;
 }
 
 .toggle{

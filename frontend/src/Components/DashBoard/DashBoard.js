@@ -11,24 +11,23 @@ export default function DashBoard() {
   const [selectedCity, setSelectedCity] = useState("Pune");
  
   return (
-    <div className='main-container'>
+    <div className={mode === "light"?'main-container-light' : 'main-container-dark'}>
       <div className='toggle'>
       <Theme  setMode={setMode} mode={mode}/>
-      
       </div>
    
-      <div className='left-half'>
+      <div className={mode === "light" ? "left-half-light" : "left-half-dark"}>
         <div className='citylist-box'>
-          <CityList setSelectedCity={setSelectedCity}  />
+          <CityList setSelectedCity={setSelectedCity} mode= {mode} />
         </div>
       </div>
  
       <div className='right-half'>
-        <div className='slider-box'>
+        <div className={mode === "light" ?'slider-box-light' : 'slider-box-dark'}>
           <Slider mode={mode}/>
         </div>
-        <div className='wikipage-box'>
-          <WikiPage selectedCity={selectedCity} />
+        <div className={mode === "light"? 'wikipage-box-light': 'wikipage-box-dark'}>
+          <WikiPage mode={mode} selectedCity={selectedCity} />
         </div>
       </div>
     </div>

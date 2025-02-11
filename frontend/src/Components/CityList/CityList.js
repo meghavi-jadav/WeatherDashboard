@@ -10,7 +10,7 @@ const CITIES_API_URL = process.env.REACT_APP_API_URL;
 
 
 
-const CityList = ({ setSelectedCity }) => {
+const CityList = ({ setSelectedCity,mode}) => {
   const [weatherData, setWeatherData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [citiesPerPage] = useState(10);
@@ -197,13 +197,17 @@ return (
     {/* <div>
       <p>hey</p>
     </div> */}
+
     {loading && (
-        <Spinner className="loader-icon" animation="border" role="status"></Spinner>
+        <Spinner className={mode === "light" ? "loader-icon-light" : "loader-icon-dark"} animation="border" role="status"></Spinner>
     )}
+
+
 
     <input
       type="text"
-      className="search-bar"
+      className={mode==="light"?"search-bar-light":"search-bar-dark"}
+      
       placeholder="Search city..."
       value={searchTerm}
       pattern="[A-Za-z]*"
@@ -213,21 +217,21 @@ return (
     />
       <div className="table-container">
         <div style={{ maxHeight: '400px', overflowY: 'auto' }} ref={tableRef}>
-        <table >
+        <table className={mode === "light" ? "table-ct-light" : "table-ct-dark"} > 
           <thead>
             <tr>
-              <th>City</th>
-              <th>Min Temp (&deg;C)</th>
-              <th>Max Temp (&deg;C)</th>
+              <th className={mode === "light" ? "table-head-light" : "table-head-dark"}>City</th>
+              <th className={mode === "light" ? "table-head-light" : "table-head-dark"}>Min Temp (&deg;C)</th>
+              <th className={mode === "light" ? "table-head-light" : "table-head-dark"}>Max Temp (&deg;C)</th>
             </tr>
           </thead>
           <tbody>
                 {displayedCities.map((city, index) => (
  
             
-                  <tr key={index}>
+                  <tr className={mode == "light" ? "table-data-light" : "table-data-dark"} key={index}>
                    
-                    <td><button onClick={() => setSelectedCity(city.name)}>{city.name}</button></td>
+                    <td><button className={mode === "light" ? "btn-cityname-light" : "btn-cityname-dark"} onClick={() => setSelectedCity(city.name)}>{city.name}</button></td>
                     <td>{city.main?.temp_min || "N/A"}</td>
                     <td>{city.main?.temp_max || "N/A"}</td>
                   </tr>)
@@ -240,7 +244,7 @@ return (
       </div>
  
     {loadedCities <= filteredCities.length && (
-      <div className="load-more-container"  disabled={loading}>
+      <div className={mode === "light" ? "load-more-container-light" : "load-more-container-dark"}  disabled={loading}>
           <button className="btn" onClick={loadMoreCities}>
               Load More
           </button>
