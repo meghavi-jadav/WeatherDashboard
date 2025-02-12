@@ -67,9 +67,11 @@ const Slider = ({mode}) => {
 
         return (
           <Carousel.Item key={index} className="carousel">
-            <div className="slider">
+            <div className={mode === "light" ? "slider-light" : "slider-dark"} >
               <div className="top">
-                <i className="fa-solid fa-location-dot"></i>
+                <i 
+                id={mode === "light" ? "location-icon-light" : "location-icon-dark"} 
+                className="fa-solid fa-location-dot"></i>
                 <h5>{city.name}</h5>
               </div>
 

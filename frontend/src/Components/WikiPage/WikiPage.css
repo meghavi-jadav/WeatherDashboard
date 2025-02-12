@@ -1,4 +1,4 @@
-.wikipage-container {
+.wikipage-container-light {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -12,7 +12,24 @@
   display: inline;
   opacity: #2a5d7d 0.9;
   overflow-y:scroll;
+  color: #2a5d7d;
 }
+
+.wikipage-container-dark {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* padding: 20px; */
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: inline;
+  opacity: 0.9;
+  overflow-y:scroll;
+}
+ 
  
 .wiki-content{
   object-fit: contain;
@@ -23,7 +40,7 @@
 
 h2{
   padding-left: 20px;
-  color: #2a5d7d;
+  /* color: #2a5d7d; */
 }
 /* 
 .skin--responsive .mw-page-container {
