@@ -1,2 +1,2 @@
-# Raect Weather Dashboard
-Changed by rohan
+# React Weather Dashboard
+
