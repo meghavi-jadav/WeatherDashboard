@@ -12,25 +12,26 @@ export default function DashBoard() {
  
   return (
     
-    <div className={mode === "light"?'main-container-light' : 'main-container-dark'}>
+      
+      <div className={mode === "light"?'main-container-light' : 'main-container-dark'}>
       <div className='toggle'>
-      <Theme  setMode={setMode} mode={mode}/>
+        <Theme  setMode={setMode} mode={mode}/>
       </div>
-   
-      <div className={mode === "light" ? "left-half-light" : "left-half-dark"}>
-        <div className='citylist-box'>
-          <CityList setSelectedCity={setSelectedCity} mode= {mode} />
+    
+        <div className={mode === "light" ? "left-half-light" : "left-half-dark"}>
+          <div className='citylist-box'>
+            <CityList setSelectedCity={setSelectedCity} mode= {mode} />
+          </div>
+        </div>
+  
+        <div className='right-half'>
+          <div className={mode === "light" ?'slider-box-light' : 'slider-box-dark'}>
+            <Slider mode={mode}/>
+          </div>
+          <div className={mode === "light"? 'wikipage-box-light': 'wikipage-box-dark'}>
+            <WikiPage mode={mode} selectedCity={selectedCity} />
+          </div>
         </div>
       </div>
- 
-      <div className='right-half'>
-        <div className={mode === "light" ?'slider-box-light' : 'slider-box-dark'}>
-          <Slider mode={mode}/>
-        </div>
-        <div className={mode === "light"? 'wikipage-box-light': 'wikipage-box-dark'}>
-          <WikiPage mode={mode} selectedCity={selectedCity} />
-        </div>
-      </div>
-    </div>
   );
 }

@@ -14,10 +14,10 @@ const Theme = ({setMode}) => {
       
   return (
     <div>
-        <FormGroup>
-      <FormControlLabel control={<Switch onChange={handleToggle}/>} />
-      
-    </FormGroup>
+      <Switch onChange={handleToggle}/>
+      {/* <FormGroup>
+        <FormControlLabel control={<Switch onChange={handleToggle}/>} />       
+      </FormGroup> */}
     </div>
   )
 }

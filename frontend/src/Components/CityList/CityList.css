@@ -158,3 +158,17 @@ margin-bottom: 5px;
 background: transparent;
 border: none;
 }
+
+
+@media (max-width: 700px){
+  .table-container {
+    height: 90%;
+    margin-bottom: 0%;
+  }
+
+  /* .load-more-container{
+    margin-top: 0%;
+  } */
+
+
+}
