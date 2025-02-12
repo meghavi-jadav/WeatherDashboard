@@ -1,11 +1,24 @@
-.slider {
+*{
+  overflow-y: hidden;
+}
+
+.slider-light {
   width: 100%;
   height: 40vh;
   align-items: center;
   object-fit: fill;
   margin-bottom: 20px;
+  color:#24609c;
 }
 
+.slider-dark{
+  width: 100%;
+  height: 40vh;
+  align-items: center;
+  object-fit: fill;
+  margin-bottom: 20px;
+  color:white;
+}
 .carousel-inner {
   height: 100%;
 }
@@ -14,24 +27,24 @@
   text-align: left;
 }
 
-.top i {
+#location-icon-light{
+  font-size: 25px;
+  margin-right: 5px;
+  margin-top: 2px; 
+}
+
+#location-icon-dark{
   font-size: 25px;
   margin-right: 5px;
   margin-top: 2px;
-  color: #24609c;
-}
-
-h5 {
-  color:#24609c;
+  color: white;
 }
 
 .mid {
-  color: #24609c;
   display: flex;
 }
 
 .mid h5 {
-  color: #24609c;
   text-transform: capitalize;
 }
 
@@ -45,7 +58,6 @@ h5 {
   margin-top: 15px;
   padding-left: 10px;
   padding-right: 10px;
-  color: #24609c;
   display: flex;
   justify-content: space-between;
 }
@@ -57,4 +69,12 @@ h5 {
 
 [data-bs-theme=dark].carousel .carousel-indicators [data-bs-target] {
   background-color: #24609c;
+}
+
+h1{
+  overflow-x: hidden;
+}
+
+.icon{
+  overflow-x: hidden;
 }

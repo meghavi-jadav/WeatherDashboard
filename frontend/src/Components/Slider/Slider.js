@@ -14,12 +14,12 @@ const cities = [
   { name: "Delhi", img: img3 },
 ];
 
-const Slider = () => {
+const Slider = ({mode}) => {
   const [cityDetails, setCityDetails] = useState({});
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = "c84d90a747b71c83cfbfbafc752196b9"; 
+      const apiKey = process.env.REACT_APP_API_KEY; 
       const fetchedData = {};
 
       for (const city of cities) {
@@ -67,9 +67,11 @@ const Slider = () => {
 
         return (
           <Carousel.Item key={index} className="carousel">
-            <div className="slider">
+            <div className={mode === "light" ? "slider-light" : "slider-dark"} >
               <div className="top">
-                <i className="fa-solid fa-location-dot"></i>
+                <i 
+                id={mode === "light" ? "location-icon-light" : "location-icon-dark"} 
+                className="fa-solid fa-location-dot"></i>
                 <h5>{city.name}</h5>
               </div>
 
