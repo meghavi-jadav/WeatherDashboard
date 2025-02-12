@@ -12,9 +12,11 @@ export default function DashBoard() {
   const [selectedCity, setSelectedCity] = useState("Pune");
  
   return (
-    <div className={mode === "light"?'main-container-light' : 'main-container-dark'}>
+    
+      
+      <div className={mode === "light"?'main-container-light' : 'main-container-dark'}>
       <div className='toggle'>
-      <Theme  setMode={setMode} mode={mode}/>
+        <Theme  setMode={setMode} mode={mode}/>
       </div>
    
       <div className={mode === "light" ? "left-half-light" : "left-half-dark"}>
