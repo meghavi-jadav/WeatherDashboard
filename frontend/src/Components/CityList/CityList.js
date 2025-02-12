@@ -53,6 +53,41 @@ const CityList = ({ setSelectedCity,mode}) => {
     fetchCities();
   }, []);
 
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      if (filteredCities.length > 0) {
+        try {
+          const results = [...weatherData]; // Keep previously fetched data
+          let fetchedCities = results.map(w => w.name.toLowerCase());
+         
+          for (let city of filteredCities.slice(0, loadedCities)) {
+            if (!fetchedCities.includes(city.toLowerCase())) {
+              const response = await fetch(
+              `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`
+              );
+              if (response.ok) {
+                const data = await response.json();
+                if(data.main && typeof data.main.temp_min === 'number' && typeof data.main.temp_max === 'number'){
+                results.push(data);
+              }
+              } else {
+                console.warn(`City not found: ${city}`);
+              }
+            }
+          }
+   
+          setWeatherData(results);
+        } catch (error) {
+          console.error("Error fetching weather data:", error);
+        }
+      }
+    };
+   
+    fetchWeatherData();
+  }, [filteredCities, loadedCities]); // Re-fetch on search or load more
+   
+
+
   //fetching weather data for the cities and storing in weatherData state ----------------------------------------------------------------
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -79,9 +114,9 @@ const CityList = ({ setSelectedCity,mode}) => {
                 const data = await response.json();
                 newWeatherData.push(data); // Store only valid data
               } else if (response.status === 404) {
-                console.clear();
+                // console.clear();
                 // throw new Error(`City not found: ${city}`);
-                // console.warn(`City not found: ${city}`);
+                console.warn(`City not found: ${city}`);
               } else {
                 console.log("went something wrong");
               }
