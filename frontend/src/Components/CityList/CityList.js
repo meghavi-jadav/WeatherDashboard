@@ -1,4 +1,3 @@
-
 //importing necsessary modules and components
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,9 +8,8 @@ import Spinner from "react-bootstrap/Spinner";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const CITIES_API_URL = process.env.REACT_APP_API_URL;
 
-
 //CityList component
-const CityList = ({ setSelectedCity,mode}) => {
+const CityList = ({ setSelectedCity, mode }) => {
   //using states
   const [weatherData, setWeatherData] = useState([]); //for storing weather data
   const [searchTerm, setSearchTerm] = useState(""); //for storing search term
@@ -20,6 +18,7 @@ const CityList = ({ setSelectedCity,mode}) => {
   const [cities, setCities] = useState([]); //for storing city names
   const [filteredCities, setFilteredCities] = useState([]); //for storing filtered city names
   const [loading, setLoading] = useState(false); //for storing loading status
+  const [noMatches, setNoMatches] = useState(false); //for storing no matches status
 
   //fetching city names from city names url and storing in cities state ----------------------------------------------------------------
   useEffect(() => {
@@ -53,89 +52,45 @@ const CityList = ({ setSelectedCity,mode}) => {
     fetchCities();
   }, []);
 
+  //fetching weather data for the cities and storing in weatherData state ----------------------------------------------------------------
   useEffect(() => {
     const fetchWeatherData = async () => {
       if (filteredCities.length > 0) {
         try {
           const results = [...weatherData]; // Keep previously fetched data
-          let fetchedCities = results.map(w => w.name.toLowerCase());
-         
+          let fetchedCities = results.map((city) => city.name.toLowerCase()); // Get the names of the fetched cities
+
           for (let city of filteredCities.slice(0, loadedCities)) {
+            //looping through the filtered cities
             if (!fetchedCities.includes(city.toLowerCase())) {
               const response = await fetch(
-              `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`
               );
+
               if (response.ok) {
-                const data = await response.json();
-                if(data.main && typeof data.main.temp_min === 'number' && typeof data.main.temp_max === 'number'){
-                results.push(data);
-              }
+                const data = await response.json(); //fetching the data
+                if (
+                  data.main &&
+                  typeof data.main.temp_min === "number" &&
+                  typeof data.main.temp_max === "number"
+                ) {
+                  results.push(data);
+                }
               } else {
                 console.warn(`City not found: ${city}`);
               }
             }
           }
-   
+
           setWeatherData(results);
         } catch (error) {
           console.error("Error fetching weather data:", error);
         }
       }
     };
-   
+
     fetchWeatherData();
   }, [filteredCities, loadedCities]); // Re-fetch on search or load more
-   
-
-
-  //fetching weather data for the cities and storing in weatherData state ----------------------------------------------------------------
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      if (filteredCities.length > 0) {
-        //filtered cities is been set in the below useEffect
-        try {
-          let results = [...weatherData]; // Keep previous weather data in the results array
-          let fetchedCities = results.map((w) => w.name.toLowerCase());//fetching the city names from the weather data to check if the city is already fetched
-          let newWeatherData = []; // Store only valid weather data
-          let index = 0; // Start from the first filtered city
-
-          while (
-            newWeatherData.length < citiesPerPage && // Load only the number of cities per page
-            index < filteredCities.length//index should be less than the filtered cities length
-          ) {
-            let city = filteredCities[index];
-
-            if (!fetchedCities.includes(city.toLowerCase())) {//if the city is not already fetched
-              const response = await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&units=metric&appid=${API_KEY}`
-              );
-
-              if (response.ok) {
-                const data = await response.json();
-                newWeatherData.push(data); // Store only valid data
-              } else if (response.status === 404) {
-                // console.clear();
-                // throw new Error(`City not found: ${city}`);
-                console.warn(`City not found: ${city}`);
-              } else {
-                console.log("went something wrong");
-              }
-            }
-
-            index++; // Move to the next city
-          }
-
-          // Update state with only valid cities
-          setWeatherData((prev) => [...prev, ...newWeatherData]); //set the weather data
-        } catch (error) {
-          console.warn("Error fetching weather data:", error); //if any error occurs while fetching the weather data
-        }
-      }
-    };
-
-    fetchWeatherData();//calling the function
-  }, [filteredCities, loadedCities]); // Refetch when search/filter changes
- 
 
   //filtering the cities based on the search term -----------------------------------------------------------------
   useEffect(() => {
@@ -149,8 +104,6 @@ const CityList = ({ setSelectedCity,mode}) => {
       setFilteredCities(cities.slice(0, loadedCities)); // Show all cities when search term is empty but only loaded cities
     }
   }, [searchTerm, cities, loadedCities]); //refetch when search term or loaded cities changes
-
-  
 
   //function to load more cities --------------------------------------------------------------------------------
   const loadMoreCities = () => {
@@ -204,13 +157,16 @@ const CityList = ({ setSelectedCity,mode}) => {
 
   //alert if no matches found------------------------------------------------------------------------------------
   useEffect(() => {
-    const timeout = setTimeout(() => {if (searchTerm && filteredCities.length === 0) {
-      // Check if search term is entered and no matches are found
-      alert("No matches found!");
-    }}, 500);
+    const timeout = setTimeout(() => {
+      if (searchTerm && filteredCities.length === 0) {
+        // Check if search term is entered and no matches are found
+        setNoMatches(true); // Show no matches alert
+      } else {
+        setNoMatches(false);
+      }
+    }, 500);
 
     return () => clearTimeout(timeout);
-    
   }, [searchTerm, filteredCities]);
 
   return (
@@ -227,9 +183,9 @@ const CityList = ({ setSelectedCity,mode}) => {
           ></Spinner>
         )
       }
-      
+
       <input
-      //search bar
+        //search bar
         type="text"
         className={mode === "light" ? "search-bar-light" : "search-bar-dark"}
         placeholder="Search city..."
@@ -239,6 +195,8 @@ const CityList = ({ setSelectedCity,mode}) => {
         // onChange={(e) => setSearchTerm(e.target.value)}
         onChange={handleSearchInputChange}
       />
+
+      {/* //table to display the cities} */}
       <div className="table-container">
         <div style={{ maxHeight: "400px", overflowY: "auto" }} ref={tableRef}>
           <table
@@ -270,6 +228,8 @@ const CityList = ({ setSelectedCity,mode}) => {
               </tr>
             </thead>
             <tbody>
+            {noMatches && <p className="tbody-ptag">No matches found!</p>}
+             
               {displayedCities.map((city, index) => (
                 <tr
                   className={
@@ -289,8 +249,10 @@ const CityList = ({ setSelectedCity,mode}) => {
                       {city.name}
                     </button>
                   </td>
-                  <td>{city.main?.temp_min  || "N/A"}</td>
+                  <td>{city.main?.temp_min || "N/A"}</td>
                   <td>{city.main?.temp_max || "N/A"}</td>
+                   {/* //no matches found alert */}
+                   
                 </tr>
               ))}
             </tbody>
@@ -317,5 +279,3 @@ const CityList = ({ setSelectedCity,mode}) => {
 };
 
 export default CityList;
-
-

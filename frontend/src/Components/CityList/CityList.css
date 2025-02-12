@@ -113,6 +113,11 @@ margin-top: 10px;
 
 }
 
+.tbody-ptag{
+  display: inline;
+  align-items: center;
+}
+
 /* table thead tr th{
 color:  #24609c;
 } */
